@@ -1,172 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dangi Brothers Store</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dangi Brothers – Phones & Parts</title>
 <style>
-:root{--blue:#2874f0;--yel:#ff9f00;--org:#fb641b;--bg:#f1f3f6;--card:#fff;--tx:#212121;--mut:#878787;--line:#e0e0e0}
-*{box-sizing:border-box;margin:0;font-family:Roboto,Arial,sans-serif}
-body{background:var(--bg);color:var(--tx)}
-button{cursor:pointer;border:0;border-radius:2px;padding:10px 16px;font-weight:600;font-size:14px}
-input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:2px;font-size:14px;margin-bottom:10px}
-.btn{background:var(--blue);color:#fff}.buy{background:var(--org);color:#fff}.cart{background:var(--yel);color:#fff}.ghost{background:#fff;color:var(--blue);border:1px solid var(--line)}
-header{background:var(--blue);color:#fff;padding:10px 16px;display:flex;gap:14px;align-items:center;position:sticky;top:0;z-index:5;flex-wrap:wrap}
-header .logo{font-size:20px;font-weight:700;font-style:italic;cursor:pointer}
-header input{flex:1;min-width:160px;margin:0}
-header button{background:transparent;color:#fff;padding:8px}
-.cats{background:#fff;display:flex;gap:18px;padding:10px 16px;overflow-x:auto;box-shadow:0 1px 2px rgba(0,0,0,.1)}
-.cats span{white-space:nowrap;cursor:pointer;font-size:14px;font-weight:500;padding:4px 0}
-.cats span.on{color:var(--blue);border-bottom:2px solid var(--blue)}
-.banner{margin:12px;background:linear-gradient(90deg,#2874f0,#6aa0ff);color:#fff;padding:28px 20px;border-radius:2px}
-.banner h1{font-size:26px}.banner p{margin-top:6px}
-.wrap{max-width:1200px;margin:auto;padding:0 12px 40px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2px;background:var(--line)}
-.p{background:#fff;padding:14px;cursor:pointer;text-align:center}
-.p .img{height:150px;display:flex;align-items:center;justify-content:center;font-size:72px}
-.p .img img{max-height:150px;max-width:100%}
-.p h3{font-size:14px;font-weight:500;margin:8px 0 4px;height:36px;overflow:hidden}
-.price{font-weight:700}.old{color:var(--mut);text-decoration:line-through;font-size:13px;margin:0 6px}.off{color:#388e3c;font-size:13px;font-weight:600}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:10;padding:12px}
-.modal.on{display:flex}
-.box{background:#fff;max-width:520px;width:100%;max-height:92vh;overflow:auto;padding:20px;border-radius:2px}
-.box h2{margin-bottom:12px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
-.tabs{display:flex;gap:8px;margin:12px 0}
-table{width:100%;border-collapse:collapse;background:#fff;font-size:13px}
-td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#323232;color:#fff;padding:10px 18px;border-radius:2px;display:none;z-index:20}
-.hide{display:none}
-@media(max-width:560px){.grid{grid-template-columns:repeat(2,1fr)}}
-</style>
-</head>
-<body>
-<header>
-  <div class="logo" onclick="go('')">Dangi Brothers</div>
-  <input id="q" placeholder="Search for products" oninput="renderShop()">
-  <button onclick="openAuth()" id="authBtn">Login</button>
-  <button onclick="openCart()">Cart (<span id="cc">0</span>)</button>
-</header>
-
-<div id="shop">
-  <div class="cats" id="cats"></div>
-  <div class="banner"><h1>Big Savings Sale</h1><p>Best prices on mobiles, fashion, home and more. Cash on Delivery available.</p></div>
-  <div class="wrap"><div class="grid" id="grid"></div></div>
-</div>
-
-<div id="admin" class="wrap hide">
-  <div id="adminLogin" style="max-width:360px;margin:40px auto;background:#fff;padding:20px">
-    <h2>Admin login</h2><br>
-    <input id="apass" type="password" placeholder="Admin password">
-    <button class="btn" onclick="adminLogin()">Login</button>
-  </div>
-  <div id="adminMain" class="hide">
-    <div class="tabs">
-      <button class="btn" onclick="atab('prod')">Products</button>
-      <button class="btn" onclick="atab('ord')">Orders</button>
-      <button class="ghost" onclick="go('')">View store</button>
-      <button class="ghost" onclick="adminOut()">Logout</button>
-    </div>
-    <div id="aprod">
-      <div style="background:#fff;padding:14px;margin-bottom:12px">
-        <h3 style="margin-bottom:10px">Add product</h3>
-        <input id="pn" placeholder="Product name">
-        <input id="pp" type="number" placeholder="Selling price (Rs)">
-        <input id="pm" type="number" placeholder="MRP (Rs)">
-        <select id="pc"></select>
-        <input id="pe" placeholder="Emoji icon (example: 📱)">
-        <input id="pi" placeholder="Image link (optional)">
-        <textarea id="pd" placeholder="Description"></textarea>
-        <button class="btn" onclick="addProd()">Add product</button>
-      </div>
-      <table id="ptab"></table>
-    </div>
-    <div id="aord" class="hide"><table id="otab"></table></div>
-  </div>
-</div>
-
-<div class="modal" id="m"><div class="box" id="mb"></div></div>
-<div class="toast" id="t"></div>
-
+:root{--bg:#0e1330;--card:#171e47;--tx:#eef2ff;--mu:#9aa6d6;--ac:#ff6a3d;--ac2:#19c3b1}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 "Segoe UI",system-ui,sans-serif}
+h1,h2,h3,.logo{font-family:Impact,"Arial Narrow Bold",sans-serif;letter-spacing:.5px;font-weight:400}
+button,input,select{font:inherit;color:inherit}
+input,select{background:var(--card);border:1px solid #ffffff22;border-radius:8px;padding:8px 10px;max-width:100%}
+button{cursor:pointer;border:0;border-radius:8px;padding:8px 14px;background:var(--ac);color:#fff;font-weight:600}
+button.g{background:#ffffff18}button.d{background:#c0392b}button:focus-visible,input:focus-visible{outline:2px solid var(--ac2)}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid #ffffff1a;display:flex;gap:10px;align-items:center;padding:10px 16px;flex-wrap:wrap}
+.logo{font-size:26px;color:var(--ac);cursor:pointer}.logo b{color:var(--tx);font-weight:400}
+#q{flex:1;min-width:140px}
+.poster{margin:16px;border-radius:18px;padding:34px 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;overflow:hidden}
+.poster h1{font-size:clamp(34px,7vw,70px);line-height:1}.poster .tag{background:#fff;color:#111;padding:6px 14px;border-radius:30px;font-weight:800;display:inline-block;margin-top:12px}
+.poster .em{font-size:clamp(60px,14vw,150px)}
+.chips{display:flex;gap:8px;padding:0 16px;overflow-x:auto}.chips button{white-space:nowrap;background:var(--card)}.chips button.on{background:var(--ac)}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;padding:16px}
+.card{background:var(--card);border-radius:14px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:1;object-fit:cover}.card div{padding:10px;display:flex;flex-direction:column;gap:4px;flex:1}
+.card small{color:var(--mu)}.card .p{font-weight:800;font-size:17px}.card .p s{color:var(--mu);font-weight:400;font-size:13px}
+.sale{position:absolute;top:10px;left:0;background:var(--ac);color:#fff;font-weight:800;padding:3px 10px 3px 8px;border-radius:0 20px 20px 0;font-size:12px}
+.ov{position:fixed;inset:0;background:#000a;display:none;z-index:9;justify-content:center;align-items:center;padding:12px}.ov.on{display:flex}
+.box{background:var(--bg);border:1px solid #ffffff22;border-radius:16px;padding:20px;width:min(520px,100%);max-height:90vh;overflow:auto;display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.adm{display:flex;min-height:80vh}.side{width:150px;padding:12px;display:flex;flex-direction:column;gap:6px;border-right:1px solid #ffffff1a}.side button{background:none;text-align:left}.side button.on{background:var(--ac)}
+.main{flex:1;padding:16px;overflow:auto;display:flex;flex-direction:column;gap:12px;min-width:0}
+table{width:100%;border-collapse:collapse}td,th{padding:6px;border-bottom:1px solid #ffffff14;text-align:left}td input{width:78px}td img{width:36px;height:36px;border-radius:6px}
+.stat{background:var(--card);border-radius:12px;padding:16px;min-width:130px;flex:1}.stat b{font-size:28px;display:block}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ac2);color:#001;padding:10px 18px;border-radius:30px;font-weight:700;display:none;z-index:99}
+@media(max-width:640px){.adm{flex-direction:column}.side{width:auto;flex-direction:row;overflow-x:auto;border:0}.poster{flex-direction:column;text-align:center}}
+</style></head><body>
+<div id="app"></div><div class="ov" id="ov"><div class="box" id="box"></div></div><div id="toast"></div>
 <script>
-const CATS=["All","Mobiles","Fashion","Electronics","Home","Grocery"];
-const ADMIN_PASSWORD="admin123"; /* CHANGE THIS before going live */
-const SEED=[
-{id:1,n:"Smartphone 128GB",p:12999,m:16999,c:"Mobiles",e:"📱",d:"6.5 inch display, 50MP camera, 5000mAh battery."},
-{id:2,n:"Wireless Earbuds",p:1299,m:2999,c:"Electronics",e:"🎧",d:"30 hours playtime with fast charging."},
-{id:3,n:"Men Casual T-Shirt",p:399,m:999,c:"Fashion",e:"👕",d:"Soft cotton, regular fit."},
-{id:4,n:"Running Shoes",p:1499,m:2999,c:"Fashion",e:"👟",d:"Light and comfortable for daily use."},
-{id:5,n:"Smart Watch",p:1999,m:4999,c:"Electronics",e:"⌚",d:"Heart rate, steps and call alerts."},
-{id:6,n:"Table Lamp",p:499,m:999,c:"Home",e:"💡",d:"LED lamp with 3 brightness levels."},
-{id:7,n:"Basmati Rice 5kg",p:549,m:699,c:"Grocery",e:"🍚",d:"Long grain, aged basmati rice."},
-{id:8,n:"Laptop 8GB/512GB",p:34999,m:45999,c:"Electronics",e:"💻",d:"Fast SSD, full HD display."}
-];
-const S={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let products=S.get("db_products",SEED),cartItems=S.get("db_cart",[]),orders=S.get("db_orders",[]),users=S.get("db_users",[]),me=S.get("db_me",null),cat="All",isAdmin=false;
-const $=id=>document.getElementById(id);
-const rs=n=>"₹"+Number(n).toLocaleString("en-IN");
-function toast(s){const t=$("t");t.textContent=s;t.style.display="block";setTimeout(()=>t.style.display="none",2200)}
-function save(){S.set("db_products",products);S.set("db_cart",cartItems);S.set("db_orders",orders);S.set("db_users",users);S.set("db_me",me)}
-function go(h){location.hash=h;route()}
-function route(){const a=location.hash==="#admin";$("admin").classList.toggle("hide",!a);$("shop").classList.toggle("hide",a);if(a)renderAdmin();else renderShop()}
-function imgOf(p){return p.i?`<img src="${p.i}" alt="">`:p.e||"📦"}
-function renderShop(){
-  $("cats").innerHTML=CATS.map(c=>`<span class="${c===cat?"on":""}" onclick="cat='${c}';renderShop()">${c}</span>`).join("");
-  const q=$("q").value.toLowerCase();
-  const list=products.filter(p=>(cat==="All"||p.c===cat)&&p.n.toLowerCase().includes(q));
-  $("grid").innerHTML=list.length?list.map(p=>`<div class="p" onclick="openProd(${p.id})"><div class="img">${imgOf(p)}</div><h3>${p.n}</h3><span class="price">${rs(p.p)}</span><span class="old">${rs(p.m)}</span><span class="off">${Math.round((1-p.p/p.m)*100)}% off</span></div>`).join(""):`<div class="p" style="grid-column:1/-1">No products found. Try another search or category.</div>`;
-  $("cc").textContent=cartItems.reduce((a,b)=>a+b.q,0);
-  $("authBtn").textContent=me?"Hi, "+me.name.split(" ")[0]:"Login";
-}
-function show(h){$("mb").innerHTML=h;$("m").classList.add("on")}
-function hideM(){$("m").classList.remove("on")}
-$("m").addEventListener("click",e=>{if(e.target.id==="m")hideM()});
-function openProd(id){const p=products.find(x=>x.id===id);
-  show(`<div class="p" style="cursor:default"><div class="img">${imgOf(p)}</div></div><h2 style="margin-top:10px">${p.n}</h2><p style="margin:6px 0">${p.d||""}</p><p><span class="price" style="font-size:22px">${rs(p.p)}</span><span class="old">${rs(p.m)}</span><span class="off">${Math.round((1-p.p/p.m)*100)}% off</span></p><br><button class="cart" onclick="addCart(${id})">Add to cart</button> <button class="buy" onclick="addCart(${id},true)">Buy now</button>`)}
-function addCart(id,buy){const x=cartItems.find(i=>i.id===id);x?x.q++:cartItems.push({id,q:1});save();renderShop();if(buy)openCart();else{toast("Added to cart");hideM()}}
-function chg(id,d){const x=cartItems.find(i=>i.id===id);x.q+=d;if(x.q<1)cartItems=cartItems.filter(i=>i.id!==id);save();renderShop();openCart()}
-function total(){return cartItems.reduce((a,i)=>{const p=products.find(x=>x.id===i.id);return a+(p?p.p*i.q:0)},0)}
-function openCart(){
-  if(!cartItems.length){show(`<h2>Your cart is empty</h2><p>Add products to see them here.</p><br><button class="btn" onclick="hideM()">Continue shopping</button>`);return}
-  show(`<h2>My Cart</h2>`+cartItems.map(i=>{const p=products.find(x=>x.id===i.id);return p?`<div class="row"><span>${p.e||"📦"} ${p.n}<br><b>${rs(p.p)}</b></span><span><button class="ghost" onclick="chg(${i.id},-1)">-</button> ${i.q} <button class="ghost" onclick="chg(${i.id},1)">+</button></span></div>`:""}).join("")+`<div class="row"><b>Total</b><b>${rs(total())}</b></div><br><button class="buy" style="width:100%" onclick="checkout()">Place order</button>`)}
-function checkout(){
-  if(!me){hideM();toast("Please login first");openAuth();return}
-  show(`<h2>Delivery details</h2><input id="cn" placeholder="Full name" value="${me.name}"><input id="cp" placeholder="Phone number"><textarea id="ca" placeholder="Full address with pincode"></textarea><p style="margin-bottom:10px">Payment: Cash on Delivery · Total ${rs(total())}</p><button class="buy" style="width:100%" onclick="placeOrder()">Confirm order</button>`)}
-function placeOrder(){
-  const n=$("cn").value.trim(),p=$("cp").value.trim(),a=$("ca").value.trim();
-  if(!n||p.length<10||!a){toast("Fill name, 10 digit phone and address");return}
-  const items=cartItems.map(i=>{const x=products.find(y=>y.id===i.id);return{n:x.n,q:i.q,p:x.p}});
-  orders.unshift({id:"DB"+Date.now().toString().slice(-7),user:me.email,name:n,phone:p,addr:a,items,total:total(),status:"Placed",date:new Date().toLocaleString("en-IN")});
-  cartItems=[];save();renderShop();
-  show(`<h2>Order placed 🎉</h2><p>Order ID: <b>${orders[0].id}</b></p><p>We will contact you on ${p} to confirm.</p><br><button class="btn" onclick="hideM()">Continue shopping</button>`)}
-function openAuth(){
-  if(me){show(`<h2>${me.name}</h2><p>${me.email}</p><br><h3>My orders</h3>`+(orders.filter(o=>o.user===me.email).map(o=>`<div class="row"><span>${o.id}<br>${o.date}</span><span>${rs(o.total)}<br><b>${o.status}</b></span></div>`).join("")||"<p>No orders yet.</p>")+`<br><button class="ghost" onclick="logout()">Logout</button>`);return}
-  show(`<h2>Login</h2><input id="le" placeholder="Email"><input id="lp" type="password" placeholder="Password"><button class="btn" style="width:100%" onclick="login()">Login</button><p style="margin:12px 0;text-align:center">New here?</p><button class="ghost" style="width:100%" onclick="openSignup()">Create account</button>`)}
-function openSignup(){show(`<h2>Create account</h2><input id="sn" placeholder="Full name"><input id="se" placeholder="Email"><input id="sp" type="password" placeholder="Password (min 6 characters)"><button class="btn" style="width:100%" onclick="signup()">Sign up</button>`)}
-function signup(){const n=$("sn").value.trim(),e=$("se").value.trim().toLowerCase(),p=$("sp").value;
-  if(!n||!e.includes("@")||p.length<6){toast("Enter name, valid email and 6+ character password");return}
-  if(users.find(u=>u.email===e)){toast("This email is already registered");return}
-  users.push({name:n,email:e,pass:p});me={name:n,email:e};save();hideM();renderShop();toast("Account created")}
-function login(){const e=$("le").value.trim().toLowerCase(),p=$("lp").value,u=users.find(x=>x.email===e&&x.pass===p);
-  if(!u){toast("Wrong email or password");return}me={name:u.name,email:u.email};save();hideM();renderShop();toast("Logged in")}
-function logout(){me=null;save();hideM();renderShop()}
-/* ---------- Admin ---------- */
-function adminLogin(){if($("apass").value===ADMIN_PASSWORD){isAdmin=true;renderAdmin()}else toast("Wrong admin password")}
-function adminOut(){isAdmin=false;renderAdmin()}
-function atab(t){$("aprod").classList.toggle("hide",t!=="prod");$("aord").classList.toggle("hide",t!=="ord")}
-function renderAdmin(){
-  $("adminLogin").classList.toggle("hide",isAdmin);$("adminMain").classList.toggle("hide",!isAdmin);if(!isAdmin)return;
-  $("pc").innerHTML=CATS.slice(1).map(c=>`<option>${c}</option>`).join("");
-  $("ptab").innerHTML=`<tr><th>Product</th><th>Price</th><th>Category</th><th></th></tr>`+products.map(p=>`<tr><td>${p.e||""} ${p.n}</td><td>${rs(p.p)}</td><td>${p.c}</td><td><button class="ghost" onclick="delProd(${p.id})">Delete</button></td></tr>`).join("");
-  $("otab").innerHTML=`<tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr>`+(orders.map((o,i)=>`<tr><td>${o.id}<br>${o.date}</td><td>${o.name}<br>${o.phone}<br>${o.addr}</td><td>${o.items.map(x=>x.n+" x"+x.q).join("<br>")}</td><td>${rs(o.total)}</td><td><select onchange="setSt(${i},this.value)">${["Placed","Packed","Shipped","Delivered","Cancelled"].map(s=>`<option ${s===o.status?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join("")||`<tr><td colspan="5">No orders yet.</td></tr>`);
-}
-function addProd(){const n=$("pn").value.trim(),p=+$("pp").value,m=+$("pm").value||p;
-  if(!n||!p){toast("Enter product name and price");return}
-  products.push({id:Date.now(),n,p,m:Math.max(m,p),c:$("pc").value,e:$("pe").value||"📦",i:$("pi").value.trim(),d:$("pd").value});
-  save();["pn","pp","pm","pe","pi","pd"].forEach(i=>$(i).value="");renderAdmin();toast("Product added")}
-function delProd(id){if(confirm("Delete this product?")){products=products.filter(p=>p.id!==id);save();renderAdmin()}}
-function setSt(i,s){orders[i].status=s;save();toast("Status updated")}
-window.addEventListener("hashchange",route);route();
-</script>
-</body>
-</html>
+const K='dbs_v1',$=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const EM={Phones:'📱',Screens:'🖥️',Batteries:'🔋',Chargers:'🔌',Cases:'🛡️','Back Panels':'🔲','Camera Modules':'📷',Earphones:'🎧'};
+let D,U=null,V='shop',AT='dash',F={c:'All',q:''},AF='',cart=[],PO=null;
+function svg(e,b){let h=0;for(const c of b||'x')h=(h*31+c.charCodeAt(0))%360;return 'data:image/svg+xml,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${h},65%,45%)"/><stop offset="1" stop-color="hsl(${(h+60)%360},70%,22%)"/></linearGradient></defs><rect width="200" height="200" fill="url(#g)"/><text x="100" y="125" font-size="78" text-anchor="middle">${e}</text></svg>`)}
+const im=p=>p.img||svg(EM[p.cat]||'📦',p.brand),sp=p=>Math.round(p.price*(1-p.sale/100)),R=n=>'₹'+Number(n).toLocaleString('en-IN');
+function seed(){
+ const M=[['Apple','iPhone 17 Pro',129900],['Apple','iPhone 17',82900],['Apple','iPhone 16',69900],['Samsung','Galaxy S25 Ultra',129999],['Samsung','Galaxy S25',80999],['Samsung','Galaxy Z Fold6',164999],['Google','Pixel 10 Pro',109999],['OnePlus','OnePlus 13',69999],['Xiaomi','Xiaomi 15',64999],['Nothing','Phone (3)',79999],['Vivo','Vivo X200 Pro',94999],['Oppo','Find X8',69999]];
+ const P=[['Screens',.18],['Batteries',.04],['Chargers',.03],['Cases',.02],['Back Panels',.05],['Camera Modules',.09],['Earphones',.05]];
+ let id=1,pr=[];
+ M.forEach(([b,n,p])=>{pr.push({id:id++,name:n,brand:b,cat:'Phones',price:p,stock:25,sale:0,img:''});P.forEach(([c,f])=>pr.push({id:id++,name:n+' '+c.replace(/s$/,''),brand:b,cat:c,price:Math.round(p*f/10)*10,stock:50,sale:0,img:''}))});
+ pr.forEach((p,i)=>{if(i%7==3)p.sale=15});
+ return{products:pr,nid:id,cats:Object.keys(EM),users:[{id:1,name:'Admin',email:'admin@dangibrothers.com',pass:'admin123',role:'admin',blocked:0}],orders:[],
+ themes:[{n:'Midnight Orange',bg:'#0e1330',card:'#171e47',tx:'#eef2ff',mu:'#9aa6d6',ac:'#ff6a3d',ac2:'#19c3b1'},{n:'Daylight',bg:'#f4f7ff',card:'#ffffff',tx:'#14183a',mu:'#5b6490',ac:'#e8430f',ac2:'#0a8f81'},{n:'Ocean',bg:'#04202c',card:'#0a3445',tx:'#e6fbff',mu:'#8cc4d4',ac:'#ffc233',ac2:'#34d1ff'}],theme:0,
+ poster:{on:1,title:'MEGA MOBILE SALE',sub:'Phones and every spare part, priced to move',tag:'UP TO 40% OFF',c1:'#ff6a3d',c2:'#7a2cff',emoji:'🔥'},set:{name:'Dangi Brothers',gw:'Razorpay',key:''}}}
+function load(){try{D=JSON.parse(localStorage.getItem(K))}catch(e){}if(!D||!D.products)D=seed()}
+const sv=()=>{try{localStorage.setItem(K,JSON.stringify(D))}catch(e){}};
+function t(m){const e=$('#toast');e.textContent=m;e.style.display='block';clearTimeout(t.h);t.h=setTimeout(()=>e.style.display='none',3200)}
+function theme(){const x=D.themes[D.theme]||D.themes[0],s=document.documentElement.style;['bg','card','tx','mu','ac','ac2'].forEach(k=>s.setProperty('--'+k,x[k]))}
+function modal(h){$('#box').innerHTML=h;$('#ov').classList.add('on')}
+function close_(){$('#ov').classList.remove('on')}
+$('#ov').onclick=e=>{if(e.target.id=='ov')close_()};
+const v=id=>$(id).value;
+function go(x){V=x;render()}
+function render(){theme();document.title=D.set.name;
+ const cn=cart.reduce((a,c)=>a+c.q,0);
+ $('#app').innerHTML=`<header><span class="logo" onclick="go('shop')">${esc(D.set.name.split(' ')[0])} <b>${esc(D.set.name.split(' ').slice(1).join(' '))}</b></span>
+ ${V=='shop'?`<input id="q" placeholder="Search phones, screens, batteries…" value="${esc(F.q)}" oninput="F.q=this.value;grid()">`:'<span style="flex:1"></span>'}
+ ${U&&U.role=='admin'?`<button class="g" onclick="go('${V=='admin'?'shop':'admin'}')">${V=='admin'?'View store':'Admin panel'}</button>`:''}
+ ${U?`<button class="g" onclick="myOrders()">Orders</button><button class="g" onclick="U=null;V='shop';render()">Log out (${esc(U.name)})</button>`:`<button class="g" onclick="authBox()">Log in</button>`}
+ <button onclick="cartBox()">Cart (${cn})</button></header>`+(V=='admin'?admin():shop());
+ if(V=='shop')grid()}
+function shop(){const p=D.poster,cs=['All','On sale',...D.cats];
+ return(p.on?`<div class="poster" style="background:linear-gradient(120deg,${p.c1},${p.c2})"><div><h1>${esc(p.title)}</h1><p>${esc(p.sub)}</p><span class="tag">${esc(p.tag)}</span></div><div class="em">${esc(p.emoji)}</div></div>`:'')+
+ `<div class="chips">${cs.map(c=>`<button class="${F.c==c?'on':''}" onclick="F.c=this.textContent;render()">${esc(c)}</button>`).join('')}</div><div id="grid"></div>`}
+function grid(){const q=F.q.toLowerCase();
+ const L=D.products.filter(p=>(F.c=='All'||(F.c=='On sale'?p.sale>0:p.cat==F.c))&&(p.name+p.brand+p.cat).toLowerCase().includes(q));
+ $('#grid').innerHTML=L.length?L.map(p=>`<div class="card">${p.sale?`<span class="sale">SALE ${p.sale}% OFF</span>`:''}<img src="${esc(im(p))}" alt="${esc(p.name)}" loading="lazy" onerror="this.onerror=null;this.src=svg('${EM[p.cat]||'📦'}','${esc(p.brand)}')"><div><small>${esc(p.brand)} · ${esc(p.cat)}</small><b>${esc(p.name)}</b><span class="p">${R(sp(p))} ${p.sale?`<s>${R(p.price)}</s>`:''}</span><button ${p.stock<1?'disabled':''} onclick="add(${p.id})">${p.stock<1?'Out of stock':'Add to cart'}</button></div></div>`).join(''):'<p>Nothing matches yet. Try another search or category.</p>'}
+function add(id){const c=cart.find(x=>x.id==id);c?c.q++:cart.push({id,q:1});t('Added to cart');render()}
+const total=()=>cart.reduce((a,c)=>a+sp(D.products.find(p=>p.id==c.id)||{price:0,sale:0})*c.q,0);
+function cartBox(){modal(`<h2>Your cart</h2>${cart.length?cart.map(c=>{const p=D.products.find(x=>x.id==c.id);return`<div class="row"><span>${esc(p.name)} × ${c.q}</span><span>${R(sp(p)*c.q)} <button class="d" onclick="cart=cart.filter(x=>x.id!=${c.id});cartBox();render()">✕</button></span></div>`}).join('')+`<div class="row"><b>Total ${R(total())}</b><button onclick="checkout()">Checkout</button></div>`:'<p>Your cart is empty. Pick a phone or a part to start.</p>'}`)}
+function checkout(){if(!U){authBox();return t('Log in to place your order')}
+ modal(`<h2>Checkout · ${R(total())}</h2><input id="ad" placeholder="Full delivery address"><select id="pm"><option>Cash on delivery</option><option>Online (${esc(D.set.gw)})</option></select><button onclick="place()">Place order</button>`)}
+function place(){if(!v('#ad').trim())return t('Enter your delivery address');const on=v('#pm').startsWith('Online');
+ if(on&&!D.set.key)return t('Online payment is not set up yet. Choose cash on delivery.');
+ cart.forEach(c=>{const p=D.products.find(x=>x.id==c.id);if(p)p.stock=Math.max(0,p.stock-c.q)});
+ D.orders.push({id:'DB'+Date.now().toString().slice(-6),uid:U.id,user:U.name,items:cart.map(c=>({n:D.products.find(p=>p.id==c.id).name,q:c.q})),total:total(),addr:v('#ad'),pay:on?'Paid via '+D.set.gw:'COD',st:'Placed',d:new Date().toLocaleDateString()});
+ cart=[];sv();close_();render();t('Order placed. Thank you!')}
+function myOrders(){const o=D.orders.filter(x=>x.uid==U.id);modal(`<h2>Your orders</h2>${o.length?o.map(x=>`<div class="stat"><b style="font-size:16px">${x.id} · ${x.st}</b>${x.items.map(i=>esc(i.n)+' × '+i.q).join(', ')}<br>${R(x.total)} · ${x.pay}</div>`).join(''):'<p>No orders yet.</p>'}`)}
+function authBox(m){m=m||'in';modal(`<h2>${m=='in'?'Log in':'Create account'}</h2>${m=='up'?'<input id="an" placeholder="Your name">':''}<input id="ae" type="email" placeholder="Email"><input id="apw" type="password" placeholder="Password"><button onclick="${m=='in'?'login()':'signup()'}">${m=='in'?'Log in':'Send OTP'}</button><button class="g" onclick="authBox('${m=='in'?'up':'in'}')">${m=='in'?'New here? Create account':'Have an account? Log in'}</button>`)}
+function login(){const u=D.users.find(x=>x.email==v('#ae').trim().toLowerCase()&&x.pass==v('#apw'));if(!u)return t('Wrong email or password');if(u.blocked)return t('This account is blocked');U=u;close_();render();t('Welcome, '+u.name)}
+function signup(){const e=v('#ae').trim().toLowerCase(),n=v('#an').trim(),p=v('#apw');if(!n||!e.includes('@')||p.length<6)return t('Enter name, valid email and 6+ character password');if(D.users.some(x=>x.email==e))return t('Email already registered');
+ PO={n,e,p,o:String(1000+Math.floor(Math.random()*9000))};modal(`<h2>Enter OTP</h2><p style="color:var(--mu)">Demo mode: your OTP is <b>${PO.o}</b>. Real email OTP needs the backend step (see notes).</p><input id="ot" placeholder="4-digit OTP"><button onclick="verify()">Verify and sign up</button>`)}
+function verify(){if(v('#ot')!=PO.o)return t('OTP does not match');const u={id:Date.now(),name:PO.n,email:PO.e,pass:PO.p,role:'user',blocked:0};D.users.push(u);U=u;sv();close_();render();t('Account created')}
+/* ---------- ADMIN ---------- */
+const TABS=[['dash','Dashboard'],['prod','Products'],['cat','Categories'],['ord','Orders'],['usr','Users'],['thm','Themes'],['pos','Sale poster'],['set','Payments & store']];
+function admin(){const f={dash,prod,cat,ord,usr,thm,pos,set}[AT];return`<div class="adm"><div class="side">${TABS.map(([k,l])=>`<button class="${AT==k?'on':''}" onclick="AT='${k}';render()">${l}</button>`).join('')}</div><div class="main">${f()}</div></div>`}
+function dash(){const rev=D.orders.reduce((a,o)=>a+o.total,0);return`<h2>Dashboard</h2><div class="row" style="justify-content:flex-start"><div class="stat"><b>${D.products.length}</b>Products</div><div class="stat"><b>${D.products.filter(p=>p.sale).length}</b>On sale</div><div class="stat"><b>${D.orders.length}</b>Orders</div><div class="stat"><b>${D.users.length}</b>Users</div><div class="stat"><b>${R(rev)}</b>Revenue</div></div>`}
+function prod(){const q=AF.toLowerCase(),L=D.products.filter(p=>(p.name+p.cat).toLowerCase().includes(q));
+ return`<h2>Products (${L.length})</h2><div class="row" style="justify-content:flex-start"><input placeholder="Filter, then press Enter" value="${esc(AF)}" onchange="AF=this.value;render()"></div>
+ <div class="stat"><b style="font-size:16px">Add product</b><div class="row" style="justify-content:flex-start"><input id="pn" placeholder="Name"><input id="pb" placeholder="Brand"><select id="pc">${D.cats.map(c=>`<option>${esc(c)}</option>`).join('')}</select><input id="pp" type="number" placeholder="Price"><input id="ps" type="number" placeholder="Stock"><input id="pi" placeholder="Photo URL (optional)"><button onclick="addP()">Add</button></div></div>
+ <div style="overflow-x:auto"><table><tr><th></th><th>Name</th><th>Price</th><th>Sale %</th><th>Stock</th><th></th></tr>${L.slice(0,40).map(p=>`<tr><td><img src="${esc(im(p))}"></td><td>${esc(p.name)}<br><small>${esc(p.cat)}</small></td><td><input type="number" value="${p.price}" onchange="up(${p.id},'price',this.value)"></td><td><input type="number" value="${p.sale}" onchange="up(${p.id},'sale',this.value)"></td><td><input type="number" value="${p.stock}" onchange="up(${p.id},'stock',this.value)"></td><td><button class="g" onclick="ph(${p.id})">Photo</button> <button class="d" onclick="delP(${p.id})">Delete</button></td></tr>`).join('')}</table></div>${L.length>40?'<p>Showing first 40. Use the filter to find others.</p>':''}`}
+function addP(){const n=v('#pn').trim(),p=+v('#pp');if(!n||!p)return t('Name and price are required');D.products.unshift({id:D.nid++,name:n,brand:v('#pb')||'Other',cat:v('#pc'),price:p,stock:+v('#ps')||0,sale:0,img:v('#pi').trim()});sv();render();t('Product added')}
+function up(id,k,x){const p=D.products.find(a=>a.id==id);p[k]=Math.max(0,+x);if(k=='sale')p.sale=Math.min(90,p.sale);sv();t('Saved')}
+function ph(id){const u=prompt('Paste photo URL (leave empty for default art):');if(u===null)return;D.products.find(a=>a.id==id).img=u.trim();sv();render()}
+function delP(id){if(!confirm('Delete this product?'))return;D.products=D.products.filter(p=>p.id!=id);sv();render()}
+function cat(){return`<h2>Categories</h2><div class="row" style="justify-content:flex-start"><input id="cn" placeholder="New category"><button onclick="addC()">Add</button></div>${D.cats.map(c=>`<div class="row stat">${EM[c]||'📦'} ${esc(c)} (${D.products.filter(p=>p.cat==c).length})<button class="d" onclick="delC('${esc(c)}')">Remove</button></div>`).join('')}`}
+function addC(){const c=v('#cn').trim();if(!c||D.cats.includes(c))return t('Enter a new category name');D.cats.push(c);sv();render()}
+function delC(c){if(!confirm('Remove category and all its products?'))return;D.cats=D.cats.filter(x=>x!=c);D.products=D.products.filter(p=>p.cat!=c);sv();render()}
+function ord(){return`<h2>Orders</h2>${D.orders.length?D.orders.slice().reverse().map(o=>`<div class="stat">${o.id} · ${esc(o.user)} · ${R(o.total)} · ${esc(o.pay)}<br><small>${esc(o.addr)}</small><br><select onchange="D.orders.find(x=>x.id=='${o.id}').st=this.value;sv();t('Status updated')">${['Placed','Packed','Shipped','Delivered','Cancelled'].map(s=>`<option ${s==o.st?'selected':''}>${s}</option>`).join('')}</select></div>`).join(''):'<p>No orders yet. They appear here as customers check out.</p>'}`}
+function usr(){return`<h2>Users</h2>${D.users.map(u=>`<div class="row stat"><span>${esc(u.name)} · ${esc(u.email)} · ${u.role}${u.blocked?' · blocked':''}</span>${u.role=='admin'?'':`<span><button class="g" onclick="blk(${u.id})">${u.blocked?'Unblock':'Block'}</button> <button class="d" onclick="D.users=D.users.filter(x=>x.id!=${u.id});sv();render()">Delete</button></span>`}</div>`).join('')}`}
+function blk(id){const u=D.users.find(x=>x.id==id);u.blocked=u.blocked?0:1;sv();render()}
+function thm(){return`<h2>Themes</h2>${D.themes.map((x,i)=>`<div class="row stat"><span>${esc(x.n)} ${i==D.theme?'(active)':''}</span><span><button onclick="D.theme=${i};sv();render()">Apply</button> ${D.themes.length>1?`<button class="d" onclick="D.themes.splice(${i},1);D.theme=0;sv();render()">Remove</button>`:''}</span></div>`).join('')}
+ <div class="stat"><b style="font-size:16px">Add theme</b><div class="row" style="justify-content:flex-start"><input id="tn" placeholder="Theme name">${[['bg','Background','#101010'],['card','Cards','#1d1d1d'],['tx','Text','#ffffff'],['mu','Muted text','#aaaaaa'],['ac','Main colour','#ff3366'],['ac2','Second colour','#33ddaa']].map(([k,l,d])=>`<label>${l} <input type="color" id="t_${k}" value="${d}"></label>`).join('')}<button onclick="addT()">Add</button></div></div>`}
+function addT(){const n=v('#tn').trim();if(!n)return t('Name your theme');const x={n};['bg','card','tx','mu','ac','ac2'].forEach(k=>x[k]=v('#t_'+k));D.themes.push(x);sv();render()}
+function pos(){const p=D.poster;return`<h2>Sale poster</h2><div class="poster" style="margin:0;background:linear-gradient(120deg,${p.c1},${p.c2})"><div><h1>${esc(p.title)}</h1><p>${esc(p.sub)}</p><span class="tag">${esc(p.tag)}</span></div><div class="em">${esc(p.emoji)}</div></div>
+ <div class="row" style="justify-content:flex-start"><input id="p1" value="${esc(p.title)}" placeholder="Title"><input id="p2" value="${esc(p.sub)}" placeholder="Subtitle"><input id="p3" value="${esc(p.tag)}" placeholder="Offer tag"><input id="p4" value="${esc(p.emoji)}" size="3"><input type="color" id="p5" value="${p.c1}"><input type="color" id="p6" value="${p.c2}"><label><input type="checkbox" id="p7" ${p.on?'checked':''}> Show on store</label><button onclick="savePo()">Save poster</button></div>
+ <p style="color:var(--mu)">To put the SALE tag on a product, set its Sale % above 0 in Products.</p>`}
+function savePo(){D.poster={title:v('#p1'),sub:v('#p2'),tag:v('#p3'),emoji:v('#p4'),c1:v('#p5'),c2:v('#p6'),on:$('#p7').checked?1:0};sv();render();t('Poster saved')}
+function set(){return`<h2>Payments & store</h2><div class="stat"><div class="row" style="justify-content:flex-start"><input id="s1" value="${esc(D.set.name)}" placeholder="Store name"><select id="s2">${['Razorpay','Stripe','PayU','Cashfree','PhonePe'].map(g=>`<option ${g==D.set.gw?'selected':''}>${g}</option>`).join('')}</select><input id="s3" type="password" value="${esc(D.set.key)}" placeholder="Payment gateway key"><button onclick="saveS()">Save</button></div></div>
+ <div class="stat"><b style="font-size:16px">Change admin password</b><div class="row" style="justify-content:flex-start"><input id="s4" type="password" placeholder="New password"><button onclick="U.pass=v('#s4');sv();t('Password changed')">Change</button></div></div>`}
+function saveS(){D.set={name:v('#s1')||'Dangi Brothers',gw:v('#s2'),key:v('#s3')};sv();render();t('Settings saved')}
+load();render();
+</script></body></html>
